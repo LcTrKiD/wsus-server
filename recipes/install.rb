@@ -69,8 +69,8 @@ if node['platform_version'].to_f >= 6.2
 
   guard_file = ::File.join(Chef::Config['file_cache_path'], 'wsus_postinstall')
   execute 'WSUS PostInstall' do
-    command        "WsusUtil.exe PostInstall #{setup_options}"
     cwd            'C:\Program Files\Update Services\Tools'
+    command        "WsusUtil.exe PostInstall #{setup_options}"
     not_if { ::File.exist?(guard_file) && ::File.read(guard_file) == setup_options }
   end
 
